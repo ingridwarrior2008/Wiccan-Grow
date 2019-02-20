@@ -55,7 +55,7 @@ public:
     int32 MaxCurveHeightDistance = 50;
     
     UPROPERTY(EditAnywhere, Category = "SplineLine Mesh")
-    float SplineLineScale = 0.2;
+    float SplineLineScale = 1;
     
     UPROPERTY(VisibleAnywhere, Category = "SplineLine Mesh")
     TArray<USplineMeshComponent*> SplineMeshComponents;
