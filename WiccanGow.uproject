@@ -8,5 +8,15 @@
 			"Name": "ApexDestruction",
 			"Enabled": true
 		}
+	],
+	"Modules": [
+		{
+			"Name": "WiccanGow",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine"
+			]
+		}
 	]
 }

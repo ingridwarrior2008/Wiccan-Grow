@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/BoxComponent.h"
+#include "Components/InputComponent.h"
 #include "GameFramework/Actor.h"
 #include "SeedZoneActor.generated.h"
 
@@ -22,22 +23,28 @@ class WICCANGOW_API ASeedZoneActor : public AActor
 {
 	GENERATED_BODY()
 	
-public:	
-	// Sets default values for this actor's properties
+public:
+    
 	ASeedZoneActor();
     
     void SetSeedSelection(ESeedType SeedType);
     ESeedType GetSeedSelection() const;
+    
+    bool ActorCanPutASeed() const;
+    
+    
+    UFUNCTION()
+    void OnSeedOlverlapStart(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+    
+    UFUNCTION()
+    void OnSeedOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+public:
     
-    void OnSeedOlverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+	virtual void Tick(float DeltaTime) override;
 
 public:
     
@@ -47,6 +54,11 @@ public:
     UPROPERTY(VisibleAnywhere, Category = "Box Collision")
     UBoxComponent* BoxComponent;
     
+    
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
     UStaticMeshComponent *StaticMeshComponent;
+    
+private:
+    bool bCanPutASeed;
+    
 };

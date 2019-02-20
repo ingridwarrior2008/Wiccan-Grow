@@ -62,6 +62,12 @@ void ATrunkActor::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedE
 void ATrunkActor::HandleRayCasting()
 {
     FHitResult OutHit;
+    
+    if (SpotLightActor == nullptr)
+    {
+        return;
+    }
+    
     FVector Start = SpotLightActor->GetActorLocation();
     
     FVector ForwardVector = SpotLightActor->GetActorForwardVector();
