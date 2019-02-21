@@ -21,6 +21,7 @@ public:
     void PlantBoom();
     void PlantLilyPads();
     void PlantSeedWithType(ESeedType SeedType);
+    void PrintSeedType(ESeedType SeedType);
 
 protected:
 	// Called when the game starts or when spawned

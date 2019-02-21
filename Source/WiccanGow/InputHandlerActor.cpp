@@ -56,7 +56,36 @@ void AInputHandlerActor::PlantSeedWithType(ESeedType SeedType)
         ASeedZoneActor* SeedActor = Cast<ASeedZoneActor>(Actor);
         if (SeedActor->ActorCanPutASeed())
         {
+            PrintSeedType(SeedType);
             SeedActor->SetSeedSelection(SeedType);
         }
     }
 }
+
+void AInputHandlerActor::PrintSeedType(ESeedType SeedType)
+{
+    FColor color;
+    FString message;
+    
+    switch (SeedType)
+    {
+        case ESeedType::EClimbingPlant:
+            color = FColor::Green;
+            message = TEXT("You planted a climbing seed");
+            break;
+        
+        case ESeedType::EBoomPlant:
+            color = FColor::Black;
+            message = TEXT("You planted a explosion mushroom seed");
+            break;
+        
+        case ESeedType::ELilyPadsPlant:
+            color = FColor::Purple;
+            message = TEXT("You planted a lilypad seed");
+            break;
+        
+    }
+    
+    GEngine->AddOnScreenDebugMessage(1, 10, color, message);
+}
+

@@ -30,6 +30,7 @@ void UPlantCreatorComponent::BeginPlay()
                     FVector TrunkLocation = FVector(Elem.Value.X, Elem.Value.Y, Elem.Value.Z - 100);
                     ATrunkActor* SpawnedActor = GetWorld()->SpawnActor<ATrunkActor>(TrunkActor, TrunkLocation, TrunkActorRotation);
                     
+                    //TODO: Refactor this shitty code!!
                     if(!bIsSpotLightActor)
                     {
                         SpawnedActor->SpotLightActor = SpotLightActor;
