@@ -16,6 +16,7 @@ void UPlantCreatorComponent::BeginPlay()
 
     if (GameInstance)
     {
+        bool bIsSpotLightActor = false;
         for (auto& Elem : GameInstance->SeedZoneActorsPosition)
         {
             switch (Elem.Key)
@@ -28,7 +29,17 @@ void UPlantCreatorComponent::BeginPlay()
                 {
                     FVector TrunkLocation = FVector(Elem.Value.X, Elem.Value.Y, Elem.Value.Z - 100);
                     ATrunkActor* SpawnedActor = GetWorld()->SpawnActor<ATrunkActor>(TrunkActor, TrunkLocation, TrunkActorRotation);
-                    SpawnedActor->SpotLightActor = SpotLightActor;
+                    
+                    if(!bIsSpotLightActor)
+                    {
+                        SpawnedActor->SpotLightActor = SpotLightActor;
+                        bIsSpotLightActor = true;
+                    }
+                    else
+                    {
+                        SpawnedActor->SpotLightActor = SpotLightActorBridge;
+                    }
+                    
                     SpawnedActor->SplineStaticMesh = SplineStaticMesh;
                     
                     SpawnedActor->LoadSplinePoints();
@@ -38,7 +49,6 @@ void UPlantCreatorComponent::BeginPlay()
                 }
                 case ESeedType::EBoomPlant:
                 {
-                    //TODO: Enable water, ask Felipe how to do it.
                     GetWorld()->SpawnActor<AActor>(BombPlant, Elem.Value, FRotator::ZeroRotator);
                     break;
                 }

@@ -40,6 +40,9 @@ public:
     ASpotLight* SpotLightActor;
     
     UPROPERTY(EditAnywhere, Category = "Spawning Seeds")
+    ASpotLight* SpotLightActorBridge;
+    
+    UPROPERTY(EditAnywhere, Category = "Spawning Seeds")
     UStaticMesh* SplineStaticMesh;
     
     UPROPERTY(EditAnywhere, Category = "Spawning Seeds")
